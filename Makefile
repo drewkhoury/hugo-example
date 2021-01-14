@@ -13,6 +13,10 @@ shell:          ## Launch hugo shell.
 server:         ## Launch hugo server.
 	docker run --rm -it -v $$(pwd):/src -p 1313:1313 ${DOCKER_IMAGE_HUGO} server
 
+.PHONY : setup
+setup:          ## Setup your repo and initialize dependencies like submodules for themes
+	git submodule add https://github.com/budparr/gohugo-theme-ananke.git themes/ananke
+
 .PHONY : build
 build:          ## Build hugo.
 	docker run --rm -v $$(pwd):/src ${DOCKER_IMAGE_HUGO} --minify
